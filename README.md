@@ -1,4 +1,3 @@
-
 # README - Fonctionnement de l'application
 
 ## Description
@@ -21,7 +20,7 @@ pip install flask firebase-admin
 ```
 
 #### Pour le frontend (dashboard) :
-Le projet utilise **Node.js** et **npm**. Pour installer les dépendances nécessaires, exécute la commande suivante :
+Le projet utilise **Node.js** et **npm**. Pour installer les dépendances nécessaires, exécutez la commande suivante :
 
 ```bash
 npm install
@@ -45,6 +44,35 @@ python 'hookServer/hookServer.py'
 - Firebase est initialisé avec une clé de service JSON.
 - Le serveur écoute sur le port 5000 avec Flask.
 - L'événement traité est `ticket_created`.
+
+### Configuration Firebase
+
+Pour configurer Firebase et permettre au serveur de se connecter à Firestore, suivez ces étapes :
+
+1. Connectez-vous à [Firebase Console](https://console.firebase.google.com).
+2. Sélectionnez le projet associé à votre application (par exemple : `urbanisation-c5b41`).
+3. Accédez à **Paramètres du projet > Comptes de service**.
+4. Cliquez sur **Générer une nouvelle clé privée** et téléchargez le fichier JSON.
+5. Renommez le fichier téléchargé en : `urbanisation-c5b41-firebase-adminsdk-5d7y6-f6163c31f2.json`.
+6. Placez ce fichier dans le répertoire : `hookServer\`.
+
+Assurez-vous que le fichier n'est **pas committé** dans le dépôt en ajoutant cette ligne dans le fichier `.gitignore` :
+
+```
+hookServer/urbanisation-c5b41-firebase-adminsdk-5d7y6-f6163c31f2.json
+```
+
+Le serveur utilise ce fichier pour initialiser Firebase Admin SDK.
+
+Exemple de code pour charger la clé dans `hookServer.py` :
+
+```python
+import firebase_admin
+from firebase_admin import credentials
+
+cred = credentials.Certificate('hookServer/urbanisation-c5b41-firebase-adminsdk-5d7y6-f6163c31f2.json')
+firebase_admin.initialize_app(cred)
+```
 
 ## 2. Petzi Simulator
 
