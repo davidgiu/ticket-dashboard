@@ -149,17 +149,7 @@
             </div>
           </div>
         </div>
-<!-- Nouveau Graphique de Répartition Géographique -->
-<div class="bg-white border rounded-2xl p-6 shadow-lg">
-    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Origine Géographique des Acheteurs</h2>
-    <Pie 
-      v-if="filteredTickets.length"
-      :data="buyerLocationData" 
-      :options="pieChartOptions"
-      class="h-96"
-    />
-    <p v-else class="text-center text-gray-500">Aucune donnée disponible</p>
-  </div>
+
         <!-- Graphiques Principaux -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
           <!-- Graphique des Ventes par Jour -->
@@ -217,7 +207,16 @@
             <p v-else class="text-center text-gray-500">Aucune donnée disponible</p>
           </div>
         </div>
-
+        <div class="bg-white border rounded-2xl p-6 shadow-lg">
+    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Origine Géographique des Acheteurs</h2>
+    <Pie 
+      v-if="filteredTickets.length"
+      :data="buyerLocationData" 
+      :options="pieChartOptions"
+      class="h-12"
+    />
+    <p v-else class="text-center text-gray-500">Aucune donnée disponible</p>
+  </div>
         <!-- Tableau de Comparaison -->
         <div v-if="comparisonMode" class="p-8">
           <h2 class="text-3xl font-bold mb-6 text-gray-900">Analyse Comparative</h2>
