@@ -26,25 +26,6 @@ Le projet utilise **Node.js** et **npm**. Pour installer les dépendances néces
 npm install
 ```
 
-## 1. Hook Server
-
-Le **hook server** est un serveur Flask qui reçoit les webhooks envoyés par le simulateur Petzi et les enregistre dans Firestore.
-
-### Commande pour lancer le serveur :
-```bash
-python 'hookServer/hookServer.py'
-```
-
-### Fonctionnement :
-- Le serveur écoute les requêtes POST sur `/webhook`.
-- Il vérifie la signature HMAC envoyée dans l'en-tête `Petzi-Signature` pour valider la requête.
-- Si la signature est correcte, il extrait les informations du webhook (création de ticket) et les enregistre dans Firestore sous la collection `tickets`.
-
-### Détails techniques :
-- Firebase est initialisé avec une clé de service JSON.
-- Le serveur écoute sur le port 5000 avec Flask.
-- L'événement traité est `ticket_created`.
-
 ### Configuration Firebase
 
 Pour configurer Firebase et permettre au serveur de se connecter à Firestore, suivez ces étapes :
@@ -73,6 +54,27 @@ from firebase_admin import credentials
 cred = credentials.Certificate('hookServer/urbanisation-c5b41-firebase-adminsdk-5d7y6-f6163c31f2.json')
 firebase_admin.initialize_app(cred)
 ```
+
+## 1. Hook Server
+
+Le **hook server** est un serveur Flask qui reçoit les webhooks envoyés par le simulateur Petzi et les enregistre dans Firestore.
+
+### Commande pour lancer le serveur :
+```bash
+python 'hookServer/hookServer.py'
+```
+
+### Fonctionnement :
+- Le serveur écoute les requêtes POST sur `/webhook`.
+- Il vérifie la signature HMAC envoyée dans l'en-tête `Petzi-Signature` pour valider la requête.
+- Si la signature est correcte, il extrait les informations du webhook (création de ticket) et les enregistre dans Firestore sous la collection `tickets`.
+
+### Détails techniques :
+- Firebase est initialisé avec une clé de service JSON.
+- Le serveur écoute sur le port 5000 avec Flask.
+- L'événement traité est `ticket_created`.
+
+
 
 ## 2. Petzi Simulator
 
