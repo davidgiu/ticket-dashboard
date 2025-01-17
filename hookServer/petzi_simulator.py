@@ -108,11 +108,61 @@ def generate_buyer_info():
     last_names = ["Dupont", "Martin", "Durand", "Leroy", "Moreau", "Dubois", "Bernard", "Schmidt", 
                   "Laurent", "Michel", "Garcia", "Roux", "Petit", "Fontaine", "Mercier", "Blanc"]
     
+    postCode ={
+        '1000': 'Lausanne',
+  '1004': 'Lausanne',
+  '1005': 'Lausanne',
+  '1006': 'Lausanne',
+  '1007': 'Lausanne',
+  '1008': 'Lausanne',
+  '1009': 'Lausanne',
+  '1010': 'Lausanne',
+  '1011': 'Lausanne',
+  '1012': 'Lausanne',
+  '1018': 'Lausanne',
+  
+  '1003': 'Lausanne-Sébeillon',
+  '1002': 'Lausanne-Flon',
+  
+  '1110': 'Morges',
+  '1131': 'Tolochenaz',
+  '1124': 'Gollion',
+  
+  '1009': 'Pully',
+  '1090': 'La Croix-sur-Lutry',
+  
+  '1260': 'Nyon',
+  '1262': 'Eysins',
+  
+  '1004': 'Chauderon',
+  
+  '1007': 'Rumine',
+  '1005': 'Bourdonette',
+  
+  '1010': 'Secteur Riponne',
+  '1011': 'Secteur Montbenon',
+  
+  '2000': 'Neuchâtel',
+  '2002': 'Neuchâtel',
+  
+  '1200': 'Genève',
+  '1202': 'Genève',
+  '1203': 'Genève',
+  '1204': 'Genève',
+  '1205': 'Genève',
+  '1206': 'Genève',
+  '1207': 'Genève',
+  '1208': 'Genève',
+  
+  '1800': 'Vevey',
+  '1820': 'Montreux',
+  
+    }
     return {
         "role": "customer",
         "firstName": random.choice(first_names),
         "lastName": random.choice(last_names),
-        "postcode": f"20{random.randint(0, 99):02d}"
+        "postcode": random.choice(list(postCode.keys()))
     }
 
 if __name__ == "__main__":
